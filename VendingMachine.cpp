@@ -3,7 +3,7 @@
 //
 
 #include "VendingMachine.h"
-#define INFINITY -1
+#define INFINITY 2147483647
 #define EPSILON .0001
 
 #include "TimePair.h"
@@ -21,13 +21,13 @@ std::string VendingMachine::lambda() {
     int n = changeBack[2];
     if (q != 0 || d != 0 || n != 0) {
         if (q > 0) {
-            out.append(q + " QUARTERS ");
+            out.append(std::to_string(q) + " QUARTERS ");
         }
         if (d > 0) {
-            out.append(d + " DIMES ");
+            out.append(std::to_string(d) + " DIMES ");
         }
         if (n > 0) {
-            out.append(n + " NICKELS ");
+            out.append(std::to_string(n) + " NICKELS ");
         }
     }
     delete changeBack;
@@ -103,18 +103,18 @@ void VendingMachine::simulate(std::vector<std::string> inp,bool debug) {
                     deltaConf(inputChar);
                 } else {
                     // Input in-between, internal case
-                    std::cout<< internalTime.toString() +  lambda() << std::endl;
+                    std::cout<< internalTime.toString() +  lambda() << " Delta Int" <<std::endl;
                     deltaInt();
                     // This must also be run for the input after the internal case
                     if(debug){
-                        std::cout<< "{INP:" + std::to_string(inputChar) +"} Delta External"<< std::endl;
+                        std::cout<<timePair.toString() + " "<< "{INP:" <<(char) inputChar << "} Delta External"<< std::endl;
                     }
                     deltaExt(inputChar);
                 }
             } else {
                 // No waiting, external case
                 if(debug){
-                    std::cout<< "{INP:" + std::to_string(inputChar) +"} Delta External"<< std::endl;
+                    std::cout<<timePair.toString() + " "<< "{INP:" << (char) inputChar << "} Delta External"<< std::endl;
                 }
                 deltaExt(inputChar);
             }
@@ -122,7 +122,7 @@ void VendingMachine::simulate(std::vector<std::string> inp,bool debug) {
         if (TimePair::compareReals(2.0, timeAdvance(),EPSILON) == 0) {
             internalTime = previousTime.advanceBy(2.0);
             // Another lambda and internal delta must be executed after input trajectory
-            std::cout<< internalTime.toString() + lambda() << std::endl;
+            std::cout<< internalTime.toString() + lambda() << " Delta Int" <<std::endl;
             deltaInt();
         }
     }

@@ -26,7 +26,6 @@ int main(int argc, char** argv) {
         }
     }
 
-    std::cout << inputVector.size() << std::endl;
     infile.close();
     VendingMachine vendingMachine = VendingMachine();
     vendingMachine.simulate(inputVector,debug);

@@ -10,5 +10,5 @@ VendingMachine.o:
 TimePair.o:
 	$(CC) $(FLAG) TimePair.cpp TimePair.h
 clean:
-	rm *.o out *.gch	
+	rm *.o out *.gch
 	

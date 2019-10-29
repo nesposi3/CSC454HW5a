@@ -13,7 +13,7 @@ private:
 public:
     static int compareReals(double a, double b,double epsilon);
     double getReal();
-    int getDiscret();
+    int getDiscrete();
     TimePair(double real);
     TimePair(double real, int discrete);
     std::string toString();

@@ -4,7 +4,7 @@
 
 #include "TimePair.h"
 #include <math.h>
-int TimePair::getDiscret() {
+int TimePair::getDiscrete() {
     return this->discrete;
 }
 
